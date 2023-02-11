@@ -13,3 +13,6 @@ export interface User {
 export interface CsrfToken {
   csrf_token: string;
 }
+export interface Error {
+  detail: string;
+}
