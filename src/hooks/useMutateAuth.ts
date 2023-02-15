@@ -47,7 +47,7 @@ export const useMutateAuth = () => {
     }
   );
 
-  const logoutrMutation = useMutation(
+  const logoutMutation = useMutation(
     async () =>
       await axios.post(
         `${process.env.REACT_APP_API_URL!}/register`,
@@ -73,4 +73,5 @@ export const useMutateAuth = () => {
       },
     }
   );
+  return { loginMutation, registerMutation, logoutMutation };
 };
