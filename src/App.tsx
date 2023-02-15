@@ -11,8 +11,7 @@ function App() {
   const csrf = useAppSelector(selectCsrfState);
   useEffect(() => {
     const getCsrfToken = async () => {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      const res = await axios.get<CsrfToken>(`${process.env.REACT_APP_API_URL}/csrftoken`);
+      const res = await axios.get<CsrfToken>(`${process.env.REACT_APP_API_URL!}/csrftoken`);
       axios.defaults.headers.common['X-CSRF-Token'] = res.data.csrf_token;
     };
     void getCsrfToken();

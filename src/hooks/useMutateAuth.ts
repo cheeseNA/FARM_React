@@ -50,7 +50,7 @@ export const useMutateAuth = () => {
   const logoutMutation = useMutation(
     async () =>
       await axios.post(
-        `${process.env.REACT_APP_API_URL!}/register`,
+        `${process.env.REACT_APP_API_URL!}/logout`,
         {},
         {
           withCredentials: true,
