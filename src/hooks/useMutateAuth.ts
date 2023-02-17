@@ -19,13 +19,13 @@ export const useMutateAuth = () => {
         navigate('/todo');
       },
       onError: (err: AxiosError<Error>) => {
-        if (err.response === undefined || err.response.data === undefined) {
-          alert('undefined error');
-          return;
-        }
-        alert(`${err.response.data.detail}\n${err.message}`);
-        if (err.response.data.detail == 'The CSRF token has expired.') {
-          dispatch(toggleCsrfState());
+        if (err.response) {
+          alert(`${err.response.data.detail}\n${err.message}`);
+          if (err.response.data.detail == 'The CSRF token has expired.') {
+            dispatch(toggleCsrfState());
+          }
+        } else {
+          alert('axios error but no response');
         }
       },
     }
@@ -35,13 +35,13 @@ export const useMutateAuth = () => {
     async (user: User) => await axios.post(`${process.env.REACT_APP_API_URL!}/register`, user),
     {
       onError: (err: AxiosError<Error>) => {
-        if (err.response === undefined || err.response.data === undefined) {
-          alert('undefined error');
-          return;
-        }
-        alert(`${err.response.data.detail}\n${err.message}`);
-        if (err.response.data.detail == 'The CSRF token has expired.') {
-          dispatch(toggleCsrfState());
+        if (err.response) {
+          alert(`${err.response.data.detail}\n${err.message}`);
+          if (err.response.data.detail == 'The CSRF token has expired.') {
+            dispatch(toggleCsrfState());
+          }
+        } else {
+          alert('axios error but no response');
         }
       },
     }
@@ -61,14 +61,14 @@ export const useMutateAuth = () => {
         navigate('/');
       },
       onError: (err: AxiosError<Error>) => {
-        if (err.response === undefined || err.response.data === undefined) {
-          alert('undefined error');
-          return;
-        }
-        alert(`${err.response.data.detail}\n${err.message}`);
-        if (err.response.data.detail == 'The CSRF token has expired.') {
-          dispatch(resetEditedTask());
-          dispatch(toggleCsrfState());
+        if (err.response) {
+          alert(`${err.response.data.detail}\n${err.message}`);
+          if (err.response.data.detail == 'The CSRF token has expired.') {
+            dispatch(resetEditedTask());
+            dispatch(toggleCsrfState());
+          }
+        } else {
+          alert('axios error but no response');
         }
       },
     }
