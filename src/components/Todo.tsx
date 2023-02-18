@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRightOnRectangleIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { setEditedTask, selectTask } from '../slices/appSlice';
@@ -7,12 +7,15 @@ import { useProcessAuth } from '../hooks/useProcessAuth';
 import { useProcessTask } from '../hooks/useProcessTask';
 import { useQueryTasks } from '../hooks/useQueryTasks';
 import { useQueryUser } from '../hooks/useQueryUser';
+import { useQuerySingleTask } from '../hooks/useQuerySingleTask';
 import { TaskItem } from './TaskItem';
 
 export const Todo = () => {
+  const [id, setId] = useState('');
   const { logout } = useProcessAuth();
   const { data: dataUser } = useQueryUser();
   const { data: dataTasks, isLoading: isLoadingTasks } = useQueryTasks();
+  const { data: dataSingleTask, isLoading: isLoadingTask } = useQuerySingleTask(id);
   const { processTask } = useProcessTask();
   const dispatch = useAppDispatch();
   const editedTask = useAppSelector(selectTask);
@@ -52,10 +55,14 @@ export const Todo = () => {
       ) : (
         <ul className='my-5'>
           {dataTasks?.map((task) => (
-            <TaskItem key={task.id} id={task.id} title={task.title} description={task.description} />
+            <TaskItem key={task.id} id={task.id} title={task.title} description={task.description} setId={setId} />
           ))}
         </ul>
       )}
+      <h2 className='mt-3 font-bold'>Selected Task</h2>
+      {isLoadingTask && <p>Loading...</p>}
+      <p className='my-1 text-blue-500 text-sm'>{dataSingleTask?.title}</p>
+      <p className='text-blue-500 text-sm'>{dataSingleTask?.description}</p>
     </div>
   );
 };
