@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["tailwindcss"],
+  "cSpell.words": ["heroicons", "tailwindcss", "Todos"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }
