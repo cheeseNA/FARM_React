@@ -11,7 +11,7 @@ export const useMutateAuth = () => {
 
   const loginMutation = useMutation(
     async (user: User) =>
-      await axios.post(`${process.env.REACT_APP_API_URL!}/login`, user, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/login`, user, {
         withCredentials: true,
       }),
     {
@@ -32,7 +32,7 @@ export const useMutateAuth = () => {
   );
 
   const registerMutation = useMutation(
-    async (user: User) => await axios.post(`${process.env.REACT_APP_API_URL!}/register`, user),
+    async (user: User) => await axios.post(`${process.env.REACT_APP_API_URL}/register`, user),
     {
       onError: (err: AxiosError<Error>) => {
         if (err.response) {
@@ -50,7 +50,7 @@ export const useMutateAuth = () => {
   const logoutMutation = useMutation(
     async () =>
       await axios.post(
-        `${process.env.REACT_APP_API_URL!}/logout`,
+        `${process.env.REACT_APP_API_URL}/logout`,
         {},
         {
           withCredentials: true,

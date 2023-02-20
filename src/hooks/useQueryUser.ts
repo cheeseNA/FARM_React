@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const useQueryUser = () => {
   const navigate = useNavigate();
   const getCurrentUser = async () => {
-    const { data } = await axios.get<UserInfo>(`${process.env.REACT_APP_API_URL!}/user`, {
+    const { data } = await axios.get<UserInfo>(`${process.env.REACT_APP_API_URL}/user`, {
       withCredentials: true,
     });
     return data;

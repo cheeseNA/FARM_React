@@ -12,7 +12,7 @@ export const useMutateTask = () => {
 
   const createTaskMutation = useMutation(
     (task: Omit<Task, 'id'>) =>
-    axios.post<Task>(`${process.env.REACT_APP_API_URL!}/todo`, task, {
+    axios.post<Task>(`${process.env.REACT_APP_API_URL}/todo`, task, {
         withCredentials: true,
       }),
     {
@@ -44,7 +44,7 @@ export const useMutateTask = () => {
   const updateTaskMutation = useMutation(
     (task: Task) =>
       axios.put<Task>(
-        `${process.env.REACT_APP_API_URL!}/todo/${task.id}`,
+        `${process.env.REACT_APP_API_URL}/todo/${task.id}`,
         {
           title: task.title,
           description: task.description,
@@ -84,7 +84,7 @@ export const useMutateTask = () => {
 
   const deleteTaskMutation = useMutation(
     (id: string) =>
-      axios.delete<Task>(`${process.env.REACT_APP_API_URL!}/todo/${id}`, {
+      axios.delete<Task>(`${process.env.REACT_APP_API_URL}/todo/${id}`, {
         withCredentials: true,
       }),
     {
