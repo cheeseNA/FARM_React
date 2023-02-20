@@ -9,7 +9,7 @@ export const useQuerySingleTask = (id: string) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const getSingleTask = async (id: string) => {
-    const { data } = await axios.get<Task>(`${process.env.REACT_APP_API_URL!}/todo/${id}`, {
+    const { data } = await axios.get<Task>(`${process.env.REACT_APP_API_URL}/todo/${id}`, {
       withCredentials: true,
     });
     return data;
